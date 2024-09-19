@@ -11,7 +11,7 @@
 //get the form values to insert them into the FormData object
 
 //fetch the CREATE endpoint to send the formValues to the server
-//!when you finish your assignment, make sure you replace the local host url with your deployed url
+//!when you finish your assignment, make sure you replace the local host url with your deployed url (https://week4-assignment-guestbook-x1c3.onrender.com)
 
 // !fetch("localhost-url/endpoint"),
 // !{
