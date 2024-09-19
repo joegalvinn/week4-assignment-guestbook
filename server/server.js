@@ -1,0 +1,32 @@
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import pg from "pg";
+
+dotenv.config();
+
+const app = express();
+app.use(express.json());
+app.use(cors());
+
+// const dbConnectionString = process.env.DATABASE_URL;
+
+// export const db = new pg.Pool({
+//   connectionString: dbConnectionString,
+// });
+
+app.listen(8080, () => {
+  console.log(`Server running on port 8080`);
+});
+
+app.get("/", (req, res) => {
+  res.json({ message: "I am... root..oute" });
+});
+
+//you need two routes minimum
+//you need a route to READ the database data
+//you need a route to CREATE or ADD new data to the databast
+//!in your CREATE route the request.body is an object that represents the form data coming from your client
+//you need to use SQL queries and parameters in these routes
+
+//your
