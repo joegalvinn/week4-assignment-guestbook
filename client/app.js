@@ -11,11 +11,13 @@ formElement.addEventListener("submit", (e) => {
   const formData = new FormData(formElement);
   const formObject = Object.fromEntries(formData);
 
-  fetch("https://localhost.8080"),
+  fetch("https://localhost.8080/add-data"),
     {
-      //  method:
-      //  headers:
-      //  body:
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ form }),
     };
 });
 //1-the event handler

@@ -23,6 +23,8 @@ app.get("/", (req, res) => {
   res.json({ message: "I am... root..oute" });
 });
 
+app.use(express.json());
+
 //you need two routes minimum
 //you need a route to READ the database data
 app.get("/data", async (req, res) => {
@@ -30,8 +32,23 @@ app.get("/data", async (req, res) => {
   res.json(query.rows);
   console.log(query);
 });
+
 //you need a route to CREATE or ADD new data to the databast
-app.post("/add-data", async (req, res) => {});
+app.post("/add-data", async (req, res) => {
+  try {
+    const { name, date, review, star } = req.body;
+    const insertQuery = `
+  INSERT INTO reviews (name, date, review, star)
+  VALUES ($1, $2, $3, $4)
+  returning *`;
+    const values = [name, date, review, star];
+    const result = await db.query(insertQuery, values);
+    res.json({ status: "Message received!" });
+  } catch (error) {
+    console.error("error adding data", error);
+  }
+});
+
 //!in your CREATE route the request.body is an object that represents the form data coming from your client
 //you need to use SQL queries and parameters in these routes
 
