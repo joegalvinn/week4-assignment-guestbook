@@ -11,7 +11,7 @@ formElement.addEventListener("submit", (e) => {
   const formData = new FormData(formElement);
   const formObject = Object.fromEntries(formData);
 
-  fetch("https://localhost.8080/add-data", {
+  fetch("https://week4-assignment-guestbook-x1c3.onrender.com", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -25,7 +25,7 @@ formElement.addEventListener("submit", (e) => {
 //a FormData object template
 //get the form values to insert them into the FormData object
 
-reviewContainer.forEach((review) => {
+reviews.forEach((review) => {
   const reviewElement = document.createElement("p");
   reviewElement.innerHTML = `
   name:${review.name} <br> 
