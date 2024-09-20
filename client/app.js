@@ -1,10 +1,16 @@
 //DOM manipulation
 //select the form
 //select the feedback container
+const formElement = document.getElementById("form");
+const reviewContainer = document.getElementById("reviewContainer");
 
 //FORM
 //we need an event to submit the form data
-
+formElement.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const formObject = Object.fromEntries(formData);
+});
 //1-the event handler
 //prevent the default behaviour
 //a FormData object template
