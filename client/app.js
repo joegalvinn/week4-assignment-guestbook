@@ -3,6 +3,7 @@
 //select the feedback container
 const formElement = document.getElementById("form");
 const reviewContainer = document.getElementById("reviewContainer");
+const renderURL = "https://week4-assignment-guestbook-x1c3.onrender.com";
 
 //FORM
 //we need an event to submit the form data
@@ -11,8 +12,9 @@ formElement.addEventListener("submit", (e) => {
   const formData = new FormData(formElement);
   const formObject = Object.fromEntries(formData);
 
-  fetch("https://week4-assignment-guestbook-x1c3.onrender.com/add-data", {
+  fetch("http://localhost:8080/add-data", {
     method: "POST",
+    // `${renderURL}/add-data`
     headers: {
       "Content-Type": "application/json",
     },
@@ -24,21 +26,6 @@ formElement.addEventListener("submit", (e) => {
 //prevent the default behaviour
 //a FormData object template
 //get the form values to insert them into the FormData object
-async function fetchReviews() {
-  const response = await fetch(
-    "https://week4-assignment-guestbook-x1c3.onrender.com/data"
-  );
-  const reviews = await response.json();
-  reviews.forEach((review) => {
-    const reviewElement = document.createElement("p");
-    reviewElement.innerHTML = `
-  name:${review.name} <br> 
-  date:${review.date} <br>
-  review${review.review} <br>
-  star${review.star} <br>
-  `;
-  });
-}
 //fetch the CREATE endpoint to send the formValues to the server
 //!when you finish your assignment, make sure you replace the local host url with your deployed url (https://week4-assignment-guestbook-x1c3.onrender.com)
 
@@ -50,7 +37,23 @@ async function fetchReviews() {
 // !}
 
 //2-the event listener --> submit
+async function fetchReviews() {
+  const response = await fetch("http://localhost:8080/data");
+  // `${renderURL}/data`
+  const reviews = await response.json();
+  reviews.forEach((review) => {
+    const reviewElement = document.createElement("p");
+    reviewElement.innerHTML = `
+  name: ${review.name} <br> 
+  date: ${review.date} <br>
+  review: ${review.review} <br>
+  star: ${review.star} <br>
+  `;
+    reviewContainer.appendChild(reviewElement);
+  });
+}
 
+fetchReviews();
 //FEEDBACK CONTAINER
 //fetch the READ endpoint to have access to the data
 //fetch the url
