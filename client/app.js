@@ -11,7 +11,7 @@ formElement.addEventListener("submit", (e) => {
   const formData = new FormData(formElement);
   const formObject = Object.fromEntries(formData);
 
-  fetch("https://week4-assignment-guestbook-x1c3.onrender.com", {
+  fetch("https://week4-assignment-guestbook-x1c3.onrender.com/add-data", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
