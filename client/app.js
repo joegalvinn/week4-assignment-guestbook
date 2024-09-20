@@ -26,7 +26,7 @@ formElement.addEventListener("submit", (e) => {
 //get the form values to insert them into the FormData object
 async function fetchReviews() {
   const response = await fetch(
-    "https://week4-assignment-guestbook-x1c3.onrender.com"
+    "https://week4-assignment-guestbook-x1c3.onrender.com/data"
   );
   const reviews = await response.json();
   reviews.forEach((review) => {
