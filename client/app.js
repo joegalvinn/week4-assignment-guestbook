@@ -24,17 +24,21 @@ formElement.addEventListener("submit", (e) => {
 //prevent the default behaviour
 //a FormData object template
 //get the form values to insert them into the FormData object
-
-reviews.forEach((review) => {
-  const reviewElement = document.createElement("p");
-  reviewElement.innerHTML = `
+async function fetchReviews() {
+  const response = await fetch(
+    "https://week4-assignment-guestbook-x1c3.onrender.com"
+  );
+  const reviews = await response.json();
+  reviews.forEach((review) => {
+    const reviewElement = document.createElement("p");
+    reviewElement.innerHTML = `
   name:${review.name} <br> 
   date:${review.date} <br>
   review${review.review} <br>
   star${review.star} <br>
   `;
-});
-
+  });
+}
 //fetch the CREATE endpoint to send the formValues to the server
 //!when you finish your assignment, make sure you replace the local host url with your deployed url (https://week4-assignment-guestbook-x1c3.onrender.com)
 
