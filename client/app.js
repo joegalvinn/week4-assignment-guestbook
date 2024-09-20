@@ -8,8 +8,15 @@ const reviewContainer = document.getElementById("reviewContainer");
 //we need an event to submit the form data
 formElement.addEventListener("submit", (e) => {
   e.preventDefault();
-  const formData = new FormData(e.target);
+  const formData = new FormData(formElement);
   const formObject = Object.fromEntries(formData);
+
+  fetch("https://localhost.8080"),
+    {
+      //  method:
+      //  headers:
+      //  body:
+    };
 });
 //1-the event handler
 //prevent the default behaviour
@@ -35,11 +42,11 @@ formElement.addEventListener("submit", (e) => {
 //wrangle date if necessary
 
 //I need to display the data on the page
-databaseData.forEach((item) => {
-  //i need to create DOM elecments to contain the data
-  //one DOM element (h1, h1, p, ) per piece of data (username, date, comment) --> for example, if i am getting username and a comment from the database i need TWO DOM elements, one for username, and one for one for comment
-  //then i need to assign the values to the text content property
-  //for example, the text content property for my h1 will have a value of the username from my database date
-  //i need to individually append those elements to the DOM
-});
-//I need to create DOM elements to contain the data
+// databaseData.forEach((item) => {
+//   //i need to create DOM elecments to contain the data
+//   //one DOM element (h1, h1, p, ) per piece of data (username, date, comment) --> for example, if i am getting username and a comment from the database i need TWO DOM elements, one for username, and one for one for comment
+//   //then i need to assign the values to the text content property
+//   //for example, the text content property for my h1 will have a value of the username from my database date
+//   //i need to individually append those elements to the DOM
+// });
+// //I need to create DOM elements to contain the data
