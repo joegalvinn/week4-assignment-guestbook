@@ -25,7 +25,7 @@ formElement.addEventListener("submit", (e) => {
 //a FormData object template
 //get the form values to insert them into the FormData object
 
-reviews.forEach((review) => {
+reviewContainer.forEach((review) => {
   const reviewElement = document.createElement("p");
   reviewElement.innerHTML = `
   name:${review.name} <br> 
