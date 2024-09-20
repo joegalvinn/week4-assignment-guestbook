@@ -9,11 +9,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// const dbConnectionString = process.env.DATABASE_URL;
+const dbConnectionString = process.env.DATABASE_URL;
 
-// export const db = new pg.Pool({
-//   connectionString: dbConnectionString,
-// });
+export const db = new pg.Pool({
+  connectionString: dbConnectionString,
+});
 
 app.listen(8080, () => {
   console.log(`Server running on port 8080`);
