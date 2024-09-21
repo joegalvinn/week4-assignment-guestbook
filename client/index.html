@@ -9,26 +9,55 @@
     <title>Guest Book</title>
   </head>
   <body>
-    <h1>TEST</h1>
-    <form id="form">
-      <label for="name">Name:</label> <br />
-      <input type="text" id="name" name="name" required /> <br />
-      <label for="date">Date:</label> <br />
-      <input type="date" id="data" name="date" required /> <br />
-      <label for="review">Review:</label> <br />
-      <input type="text" id="review" name="review" required /> <br />
-      <label for="star">Star Rating:</label> <br />
-      <select name="star" id="star">
-        <option value="★">★</option>
-        <option value="★★">★★</option>
-        <option value="★★★">★★★</option>
-        <option value="★★★★">★★★★</option>
-        <option value="★★★★★">★★★★★</option>
-      </select>
-      <button type="submit">Submit</button>
-    </form>
+    <h1 id="guestbookHeader">
+      <b
+        >Guest <br />
+        Book</b
+      >
+    </h1>
+    <button id="btn-open-popup">Click to Open <br />Review Form</button>
+    <div id="popupOverlay">
+      <div id="popup-box">
+        <form id="form">
+          <label for="name">Name:</label> <br />
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your name..."
+            required
+          />
+          <br />
+          <label for="date">Date:</label> <br />
+          <input type="date" id="data" name="date" required /> <br />
+          <label for="review">Review:</label> <br />
+          <textarea
+            id="review"
+            name="review"
+            rows="4"
+            columns="12"
+            id="review"
+            name="review"
+            maxlength="255"
+            placeholder="Write your review here..."
+            required
+          ></textarea>
+          <br />
+          <label for="star">Star Rating:</label> <br />
+          <select name="star" id="star">
+            <option value="★">★</option>
+            <option value="★★">★★</option>
+            <option value="★★★">★★★</option>
+            <option value="★★★★">★★★★</option>
+            <option value="★★★★★">★★★★★</option>
+          </select>
+          <button id="submitButton" type="submit">Submit</button>
+        </form>
+        <button id="btn-close-popup">Close</button>
+      </div>
+    </div>
 
-    <div id="reviewContainer"><p>REVIEWS GO HERE</p></div>
+    <div id="reviewContainer"></div>
     <!-- we need a form to collect user data -->
     <!-- ! remember the name attribute -->
     <!-- we need a container to display the user feedback -->

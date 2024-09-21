@@ -4,15 +4,25 @@
 const formElement = document.getElementById("form");
 const reviewContainer = document.getElementById("reviewContainer");
 const renderURL = "https://week4-assignment-guestbook-x1c3.onrender.com";
+const openPopupButton = document.getElementById("btn-open-popup");
+const closePopupButton = document.getElementById("btn-close-popup");
+
+function togglePopup() {
+  const overlay = document.getElementById("popupOverlay");
+  overlay.classList.toggle("show");
+}
+
+openPopupButton.addEventListener("click", togglePopup);
+closePopupButton.addEventListener("click", togglePopup);
 
 //FORM
 //we need an event to submit the form data
-formElement.addEventListener("submit", (e) => {
+formElement.addEventListener("submit", async (e) => {
   e.preventDefault();
   const formData = new FormData(formElement);
   const formObject = Object.fromEntries(formData);
 
-  fetch("http://localhost:8080/add-data", {
+  const response = await fetch(`${renderURL}/add-data`, {
     method: "POST",
     // `${renderURL}/add-data`
     headers: {
@@ -20,6 +30,10 @@ formElement.addEventListener("submit", (e) => {
     },
     body: JSON.stringify(formObject),
   });
+  const newReview = await response.json();
+  await fetchReviews();
+  formElement.reset();
+  togglePopup();
 });
 
 //1-the event handler
@@ -38,19 +52,31 @@ formElement.addEventListener("submit", (e) => {
 
 //2-the event listener --> submit
 async function fetchReviews() {
-  const response = await fetch("http://localhost:8080/data");
+  const response = await fetch(`${renderURL}/data`);
   // `${renderURL}/data`
   const reviews = await response.json();
+  reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
+  reviewContainer.innerHTML = "";
   reviews.forEach((review) => {
-    const reviewElement = document.createElement("p");
-    reviewElement.innerHTML = `
+    addReviewToPage(review);
+  });
+}
+
+function addReviewToPage(review) {
+  const reviewElement = document.createElement("p");
+  const date = new Date(review.date);
+  const formattedDate = date.toLocaleString("en-GB", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+  reviewElement.innerHTML = `
   name: ${review.name} <br> 
-  date: ${review.date} <br>
+  date: ${formattedDate} <br>
   review: ${review.review} <br>
   star: ${review.star} <br>
   `;
-    reviewContainer.appendChild(reviewElement);
-  });
+  reviewContainer.appendChild(reviewElement);
 }
 
 fetchReviews();
