@@ -24,7 +24,7 @@ formElement.addEventListener("submit", async (e) => {
 
   const response = await fetch(`${renderURL}/add-data`, {
     method: "POST",
-    // `${renderURL}/add-data`
+    // "http://localhost:8080/add-data"
     headers: {
       "Content-Type": "application/json",
     },
@@ -53,7 +53,7 @@ formElement.addEventListener("submit", async (e) => {
 //2-the event listener --> submit
 async function fetchReviews() {
   const response = await fetch(`${renderURL}/data`);
-  // `${renderURL}/data`
+  // "http://localhost:8080/add-data"
   const reviews = await response.json();
   reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
   reviewContainer.innerHTML = "";

@@ -5,22 +5,36 @@ import pg from "pg";
 
 dotenv.config();
 
-const app = express();
-app.use(express.json());
+const corsOptions = {
+  origin: "https://week4-assignment-guestbook-1.onrender.com",
+  optionsSuccessStatus: 200,
+};
 
-app.use(
-  cors({
-    origin: "https://week4-assignment-guestbook-1.onrender.com",
-  })
-);
+app.use(cors(corsOptions));
 
-app.options("*", cors());
-
+// Database connection
 const dbConnectionString = process.env.DATABASE_URL;
 
 export const db = new pg.Pool({
   connectionString: dbConnectionString,
+  ssl: { rejectUnauthorized: false },
 });
+// const app = express();
+// app.use(express.json());
+
+// app.use(
+//   cors({
+//     origin: "https://week4-assignment-guestbook-1.onrender.com",
+//   })
+// );
+
+// app.options("*", cors());
+
+// const dbConnectionString = process.env.DATABASE_URL;
+
+// export const db = new pg.Pool({
+//   connectionString: dbConnectionString,
+// });
 
 app.listen(8080, () => {
   console.log(`Server running on port 8080`);
