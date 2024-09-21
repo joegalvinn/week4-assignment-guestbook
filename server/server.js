@@ -7,7 +7,11 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://week4-assignment-guestbook-1.onrender.com",
+  })
+);
 
 app.options("*", cors());
 
