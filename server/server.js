@@ -9,6 +9,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.options("*", cors());
+
 const dbConnectionString = process.env.DATABASE_URL;
 
 export const db = new pg.Pool({
