@@ -22,7 +22,7 @@ formElement.addEventListener("submit", async (e) => {
   const formData = new FormData(formElement);
   const formObject = Object.fromEntries(formData);
 
-  const response = await fetch(`${renderURL}add-data`, {
+  const response = await fetch("http://localhost:8080/add-data", {
     method: "POST",
     // "http://localhost:8080/add-data"
     headers: {
@@ -52,7 +52,7 @@ formElement.addEventListener("submit", async (e) => {
 
 //2-the event listener --> submit
 async function fetchReviews() {
-  const response = await fetch(`${renderURL}data`);
+  const response = await fetch("http://localhost:8080/data");
   // "http://localhost:8080/data"
   const reviews = await response.json();
   reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
