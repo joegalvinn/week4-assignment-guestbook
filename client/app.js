@@ -3,7 +3,7 @@
 //select the feedback container
 const formElement = document.getElementById("form");
 const reviewContainer = document.getElementById("reviewContainer");
-const renderURL = "https://week4-assignment-guestbook-1.onrender.com";
+const renderURL = "https://week4-assignment-guestbook-x1c3.onrender.com/";
 const openPopupButton = document.getElementById("btn-open-popup");
 const closePopupButton = document.getElementById("btn-close-popup");
 
@@ -22,7 +22,7 @@ formElement.addEventListener("submit", async (e) => {
   const formData = new FormData(formElement);
   const formObject = Object.fromEntries(formData);
 
-  const response = await fetch(`${renderURL}/add-data`, {
+  const response = await fetch(`${renderURL}add-data`, {
     method: "POST",
     // "http://localhost:8080/add-data"
     headers: {
@@ -52,7 +52,7 @@ formElement.addEventListener("submit", async (e) => {
 
 //2-the event listener --> submit
 async function fetchReviews() {
-  const response = await fetch(`${renderURL}/data`);
+  const response = await fetch(`${renderURL}data`);
   // "http://localhost:8080/data"
   const reviews = await response.json();
   reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
