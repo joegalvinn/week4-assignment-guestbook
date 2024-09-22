@@ -8,10 +8,10 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-const corsOptions = {
-  origin: "https://week4-assignment-guestbook-1.onrender.com", // Your frontend origin
-  optionsSuccessStatus: 200, // For legacy browser support
-};
+// const corsOptions = {
+//   origin: "https://week4-assignment-guestbook-1.onrender.com", // Your frontend origin
+//   optionsSuccessStatus: 200, // For legacy browser support
+// };
 
 app.use(cors(corsOptions));
 // app.options("*", cors(corsOptions));
