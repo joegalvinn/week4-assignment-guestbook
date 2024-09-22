@@ -7,8 +7,8 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
-app.options("*", cors());
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 // const dbConnectionString = process.env.DATABASE_URL;
 
@@ -17,7 +17,7 @@ app.options("*", cors());
 // });
 
 const corsOptions = {
-  origin: "https://week4-assignment-guestbook-1.onrender.com/", // Your frontend origin
+  origin: "https://week4-assignment-guestbook-1.onrender.com", // Your frontend origin
   optionsSuccessStatus: 200, // For legacy browser support
 };
 
