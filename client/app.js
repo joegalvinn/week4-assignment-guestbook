@@ -3,7 +3,7 @@
 //select the feedback container
 const formElement = document.getElementById("form");
 const reviewContainer = document.getElementById("reviewContainer");
-const renderURL = "https://week4-assignment-guestbook-x1c3.onrender.com";
+const renderURL = "https://week4-assignment-guestbook-1.onrender.com";
 const openPopupButton = document.getElementById("btn-open-popup");
 const closePopupButton = document.getElementById("btn-close-popup");
 
