@@ -7,24 +7,15 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
-
-// const dbConnectionString = process.env.DATABASE_URL;
-
-// export const db = new pg.Pool({
-//   connectionString: dbConnectionString,
-// });
 
 const corsOptions = {
   origin: "https://week4-assignment-guestbook-1.onrender.com", // Your frontend origin
   optionsSuccessStatus: 200, // For legacy browser support
 };
 
-// Use CORS middleware
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
-// Database connection
 const dbConnectionString = process.env.DATABASE_URL;
 
 export const db = new pg.Pool({
@@ -39,8 +30,6 @@ app.listen(8080, () => {
 app.get("/", (req, res) => {
   res.json({ message: "I am... root..oute" });
 });
-
-app.use(express.json());
 
 //you need two routes minimum
 //you need a route to READ the database data
