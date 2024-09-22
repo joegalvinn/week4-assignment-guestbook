@@ -9,10 +9,26 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// const dbConnectionString = process.env.DATABASE_URL;
+
+// export const db = new pg.Pool({
+//   connectionString: dbConnectionString,
+// });
+
+const corsOptions = {
+  origin: "https://week4-assignment-guestbook-1.onrender.com/", // Your frontend origin
+  optionsSuccessStatus: 200, // For legacy browser support
+};
+
+// Use CORS middleware
+app.use(cors(corsOptions));
+
+// Database connection
 const dbConnectionString = process.env.DATABASE_URL;
 
 export const db = new pg.Pool({
   connectionString: dbConnectionString,
+  ssl: { rejectUnauthorized: false }, // Required for many cloud services
 });
 
 app.listen(8080, () => {
