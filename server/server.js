@@ -8,37 +8,12 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
 
-const corsOptions = {
-  origin: "https://week4-assignment-guestbook-1.onrender.com",
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
-
-// Database connection
 const dbConnectionString = process.env.DATABASE_URL;
 
 export const db = new pg.Pool({
   connectionString: dbConnectionString,
-  ssl: { rejectUnauthorized: false },
 });
-
-// const dbConnectionString = process.env.DATABASE_URL;
-
-// export const db = new pg.Pool({
-//   connectionString: dbConnectionString,
-// });
 
 app.listen(8080, () => {
   console.log(`Server running on port 8080`);
