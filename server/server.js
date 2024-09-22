@@ -20,7 +20,13 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-app.use(cors(corsOptions));
+app.UseCors((x) =>
+  x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed((origin) => true)
+    .AllowCredentials()
+);
 
 // Database connection
 const dbConnectionString = process.env.DATABASE_URL;
