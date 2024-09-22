@@ -21,13 +21,11 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.UseCors((x) =>
-  x
-    .AllowAnyMethod()
-    .AllowAnyHeader()
-    .SetIsOriginAllowed((origin) => true) // allow any origin
-    .AllowCredentials()
-);
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
+
 // Database connection
 const dbConnectionString = process.env.DATABASE_URL;
 
